@@ -5,7 +5,7 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "Referral",schema = "spartans")
+@Table(name = "referral",schema = "spartans")
 public class Referral {
 
     @Id
@@ -46,7 +46,7 @@ public class Referral {
     @Column(name = "lastUpdated")
     private Timestamp lastUpdated;
 
-    @OneToOne(mappedBy = "Referral")
+    @OneToOne(mappedBy = "referral")
     private Case caseHistory;
 
     public Integer getReferralId() {
