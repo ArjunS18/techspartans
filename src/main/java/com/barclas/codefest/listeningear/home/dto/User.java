@@ -1,8 +1,9 @@
 package com.barclas.codefest.listeningear.home.dto;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 
-@Entity
+
 public class User {
     public User(){}
 
