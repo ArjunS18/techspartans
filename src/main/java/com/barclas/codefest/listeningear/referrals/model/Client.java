@@ -6,7 +6,7 @@ import java.sql.Timestamp;
 import java.util.List;
 
 @Entity
-@Table(name = "Client",schema = "spartans")
+@Table(name = "client",schema = "spartans")
 public class Client {
 
     @Id
@@ -31,7 +31,7 @@ public class Client {
     @Column(name = "phoneBo")
     private String phoneNo;
 
-    @OneToMany(mappedBy = "Client")
+    @OneToMany(mappedBy = "client")
     private List<Case> cases;
 
     @Column(name = "lastUpdated")

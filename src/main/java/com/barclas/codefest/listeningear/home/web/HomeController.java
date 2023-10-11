@@ -1,6 +1,6 @@
 package com.barclas.codefest.listeningear.home.web;
 
-import com.barclas.codefest.listeningear.home.dto.User;
+import com.barclas.codefest.listeningear.home.model.User;
 import com.barclas.codefest.listeningear.home.model.UserRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -21,18 +21,18 @@ public class HomeController {
         return userRepository.save(todo);
     }
 
-//    @GetMapping("/users")
-//    public Iterable<User> getTodos() {
-//        return userRepository.findAll();
-//    }
-
     @GetMapping("/users")
-    public User getTodos() {
-        //return userRepository.findAll();
-        User user = new User();
-        user.setPassword("123456");
-        user.setUserid(1000L);
-        user.setUsername("admin");
-        return user;
+    public Iterable<User> getTodos() {
+        return userRepository.findAll();
     }
+
+//    @GetMapping("/users")
+//    public User getTodos() {
+//        //return userRepository.findAll();
+//        User user = new User();
+//        user.setPassword("123456");
+//        user.setUserid(1000L);
+//        user.setUsername("admin");
+//        return user;
+    //}
 }

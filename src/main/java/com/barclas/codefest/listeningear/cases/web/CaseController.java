@@ -15,11 +15,11 @@ public class CaseController {
         this.caseRepository = caseRepository;
     }
 
-    @PostMapping("/")
-    @ResponseStatus(HttpStatus.CREATED)
-    public Case createTodo(@RequestBody Case todo) {
-        return caseRepository.save(todo);
-    }
+//    @PostMapping("/")
+//    @ResponseStatus(HttpStatus.CREATED)
+//    public Case createTodo(@RequestBody Case todo) {
+//        return caseRepository.save(todo);
+//    }
 
 //    @GetMapping("/users")
 //    public Iterable<User> getTodos() {
