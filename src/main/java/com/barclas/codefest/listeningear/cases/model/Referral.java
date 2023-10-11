@@ -1,6 +1,7 @@
-package com.barclas.codefest.listeningear.referrals.model;
+package com.barclas.codefest.listeningear.cases.model;
 
-import com.barclas.codefest.listeningear.cases.model.Case;
+import com.barclas.codefest.listeningear.referrals.model.Client;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 
@@ -12,6 +13,10 @@ public class Referral {
     @Column(name = "referralId")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer referralId;
+
+    @OneToOne(optional = false)
+    @JoinColumn(name = "clientId", referencedColumnName = "clientId", insertable = false, updatable = false)
+    private Client client;
 
     @Column(name = "firstName")
     private String firstName;
@@ -32,7 +37,7 @@ public class Referral {
     private String phoneNo;
 
     @Column(name = "status")
-    private Boolean status;
+    private String status;
 
     @Column(name = "gpSurgeryName")
     private String gpSurgeryName;
@@ -43,11 +48,15 @@ public class Referral {
     @Column(name = "gpSurgeryPhoneNo")
     private String gpSurgeryPhoneNo;
 
+
+    @Column(name = "clientId")
+    private Integer clientId;
+
+    @Column(name = "createdTime")
+    private Timestamp createdTime;
+
     @Column(name = "lastUpdated")
     private Timestamp lastUpdated;
-
-    @OneToOne(mappedBy = "Referral")
-    private Case caseHistory;
 
     public Integer getReferralId() {
         return referralId;
@@ -113,11 +122,11 @@ public class Referral {
         this.lastUpdated = lastUpdated;
     }
 
-    public Boolean getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(Boolean status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
@@ -143,5 +152,9 @@ public class Referral {
 
     public void setGpSurgeryPhoneNo(String gpSurgeryPhoneNo) {
         this.gpSurgeryPhoneNo = gpSurgeryPhoneNo;
+    }
+
+    public void setCreatedTime(Timestamp createdTime) {
+        this.createdTime = createdTime;
     }
 }

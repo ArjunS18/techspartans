@@ -1,17 +1,21 @@
-package com.barclas.codefest.listeningear.referrals.model;
+package com.barclas.codefest.listeningear.cases.model;
 
-import com.barclas.codefest.listeningear.cases.model.Case;
 import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "Referral",schema = "spartans")
-public class Referral {
-
+@Table(name = "Client",schema = "spartans")
+public class Client {
     @Id
-    @Column(name = "referralId")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer referralId;
+    private String id;
+
+    @OneToOne(mappedBy = "client")
+    private Referral referral;
+
+    @Column(name = "clientId")
+    private String clientId;
 
     @Column(name = "firstName")
     private String firstName;
@@ -31,30 +35,18 @@ public class Referral {
     @Column(name = "phoneNo")
     private String phoneNo;
 
-    @Column(name = "status")
-    private Boolean status;
-
-    @Column(name = "gpSurgeryName")
-    private String gpSurgeryName;
-
-    @Column(name = "gpSurgeryAddress")
-    private String gpSurgeryAddress;
-
-    @Column(name = "gpSurgeryPhoneNo")
-    private String gpSurgeryPhoneNo;
+    @Column(name = "CreatedOn")
+    private Timestamp CreatedOn;
 
     @Column(name = "lastUpdated")
     private Timestamp lastUpdated;
 
-    @OneToOne(mappedBy = "Referral")
-    private Case caseHistory;
-
-    public Integer getReferralId() {
-        return referralId;
+    public String getClientId() {
+        return clientId;
     }
 
-    public void setReferralId(Integer referralId) {
-        this.referralId = referralId;
+    public void setClientId(String clientId) {
+        this.clientId = this.firstName+"_"+this.surname+"_"+this.dob
     }
 
     public String getFirstName() {
@@ -113,35 +105,20 @@ public class Referral {
         this.lastUpdated = lastUpdated;
     }
 
-    public Boolean getStatus() {
-        return status;
+    public String getId() {
+        return id;
     }
 
-    public void setStatus(Boolean status) {
-        this.status = status;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public String getGpSurgeryName() {
-        return gpSurgeryName;
+    public Timestamp getCreatedOn() {
+        return CreatedOn;
     }
 
-    public void setGpSurgeryName(String gpSurgeryName) {
-        this.gpSurgeryName = gpSurgeryName;
-    }
-
-    public String getGpSurgeryAddress() {
-        return gpSurgeryAddress;
-    }
-
-    public void setGpSurgeryAddress(String gpSurgeryAddress) {
-        this.gpSurgeryAddress = gpSurgeryAddress;
-    }
-
-    public String getGpSurgeryPhoneNo() {
-        return gpSurgeryPhoneNo;
-    }
-
-    public void setGpSurgeryPhoneNo(String gpSurgeryPhoneNo) {
-        this.gpSurgeryPhoneNo = gpSurgeryPhoneNo;
+    public void setCreatedOn(Timestamp createdOn) {
+        CreatedOn = createdOn;
     }
 }
+

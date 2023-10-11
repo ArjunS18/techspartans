@@ -1,7 +1,7 @@
 package com.barclas.codefest.listeningear.cases.web;
 
-import com.barclas.codefest.listeningear.cases.dto.Case;
-import com.barclas.codefest.listeningear.cases.model.CaseRepository;
+import com.barclas.codefest.listeningear.cases.model.Case;
+import com.barclas.codefest.listeningear.cases.Repository.CaseRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 

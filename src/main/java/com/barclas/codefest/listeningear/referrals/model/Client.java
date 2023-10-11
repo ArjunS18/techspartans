@@ -1,6 +1,6 @@
 package com.barclas.codefest.listeningear.referrals.model;
 
-import com.barclas.codefest.listeningear.cases.dto.Case;
+import com.barclas.codefest.listeningear.cases.model.Case;
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.List;
