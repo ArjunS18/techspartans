@@ -1,6 +1,6 @@
 package com.barclas.codefest.listeningear.home.dto;
 
-import jakarta.persistence.Entity;
+import javax.persistence.Entity;
 
 @Entity
 public class User {

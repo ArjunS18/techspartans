@@ -26,13 +26,5 @@ public class CaseController {
 //        return userRepository.findAll();
 //    }
 
-    @GetMapping("/users")
-    public Case getTodos() {
-        //return userRepository.findAll();
-        Case user = new Case();
-        user.setPassword("123456");
-        user.setUserid(1000L);
-        user.setUsername("admin");
-        return user;
-    }
+
 }

@@ -1,44 +1,92 @@
 package com.barclas.codefest.listeningear.cases.dto;
 
-import jakarta.persistence.Entity;
+import com.barclas.codefest.listeningear.referrals.model.Client;
+import com.barclas.codefest.listeningear.referrals.model.Referral;
+import javax.persistence.*;
+
+import java.sql.Timestamp;
 
 @Entity
+@Table(name = "Cases",schema = "spartans")
 public class Case {
-    public Case(){}
 
-    public Case(String username, String password, Long userid){
-        this.username = username;
-        this.password = password;
-        this.userid = userid;
+    @Id
+    @Column(name = "caseId")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer caseId;
+
+    @Column(name = "firstName")
+    private String firstName;
+
+    @Column(name = "surname")
+    private String surname;
+
+    @ManyToOne
+    private Client client;
+
+    @OneToOne(optional = false, cascade = CascadeType.ALL)
+    @JoinColumn(name = "referralId", referencedColumnName = "referralId")
+    private Referral referral;
+
+    @Column(name = "creationDate")
+    private Timestamp creationDate;
+
+    @Column(name = "status")
+    private String status;
+
+    public String getFirstName() {
+        return firstName;
     }
 
-    private String username;
-
-    private String password;
-
-    private Long caseid;
-
-    public String getUsername() {
-        return username;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public String getSurname() {
+        return surname;
     }
 
-    public Long getUserid() {
-        return userid;
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 
-    public void setUserid(Long userid) {
-        this.userid = userid;
+    public Integer getCaseId() {
+        return caseId;
     }
 
-    public String getPassword() {
-        return password;
+    public void setCaseId(Integer caseId) {
+        this.caseId = caseId;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public Timestamp getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(Timestamp creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
+    public Referral getReferral() {
+        return referral;
+    }
+
+    public void setReferral(Referral referral) {
+        this.referral = referral;
     }
 }
