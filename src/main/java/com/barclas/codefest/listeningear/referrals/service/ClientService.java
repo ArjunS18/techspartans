@@ -20,7 +20,7 @@ public class ClientService {
     ReferralRepository referralsRepository;
 
     @Autowired
-    ClientRepository ClientRepository;
+    ClientRepository clientRepository;
 
 
     @Transactional
@@ -28,8 +28,8 @@ public class ClientService {
         try {
             Client newClient = new Client();
             String clientId = referral.getFirstName() + "_" + referral.getSurname() + "_" + referral.getDob();
-            if (ClientRepository.countByClientId(clientId) == 0) {
-                newClient.setClientId(clientId);
+            if (clientRepository.countByClientId(clientId) == 0) {
+                //newClient.setClientId(clientId);
                 newClient.setFirstName(referral.getFirstName());
                 newClient.setSurname(referral.getSurname());
                 newClient.setDob(referral.getDob());
@@ -40,6 +40,8 @@ public class ClientService {
                 newClient.setCreatedOn(timestamp);
                 newClient.setLastUpdated(timestamp);
                 newClient.setAlternateName(referral.getFirstName() + "_" + referral.getSurname() + "_" + referral.getDob());
+                clientRepository.save(newClient);
+
                 return newClient;
             }
             else {
@@ -47,6 +49,26 @@ public class ClientService {
             }
         } catch (Exception ex) {
             throw new Exception("Exception occurred in while creating Referral!");
+        }
+    }
+
+    public List<Client> getAllClients() throws Exception {
+        try {
+            List<Client> response = clientRepository.findAll();
+            return response;
+
+        } catch (Exception e) {
+            throw new Exception("Exception occurred while fetching all referrals!");
+        }
+    }
+
+    public Client getClientById(Long clientId) throws Exception {
+        try {
+            return clientRepository.findByClientId(clientId);
+
+        } catch (Exception e) {
+            System.out.println(e);
+            throw new Exception("Exception occurred while fetching Client!");
         }
     }
 

@@ -93,6 +93,7 @@ public class ReferralService {
             Referral refer = referralsRepository.findByReferralId(referralId);
             refer.setStatus("Accepted");
             Case cs = caseService.createCase(refer);
+
             refer.setCaseHistory(cs);
 
             referralsRepository.save(refer);
@@ -123,6 +124,7 @@ public class ReferralService {
             return referralsRepository.findByReferralId(referralId);
 
         } catch (Exception e) {
+            System.out.println(e);
             throw new Exception("Exception occurred while fetching referral!");
         }
     }

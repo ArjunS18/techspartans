@@ -42,7 +42,7 @@ public class CaseService {
             newCase.setReferral(referral);
             newCase.setStatus("NEW");
             newCase.setCreationDate(new Timestamp(System.currentTimeMillis()));
-
+            caseRepository.save(newCase);
             return newCase;
 
         } catch (Exception ex) {
@@ -72,9 +72,20 @@ public class CaseService {
             return caseRepository.findAllCasesByClientId(clientId);
 
         } catch (Exception e) {
+            System.out.println(e);
             throw new Exception("Exception occurred while fetching cases of client!");
         }
     }
+
+    public List<Case> getAllCases() throws Exception {
+        try {
+            List<Case> response = caseRepository.findAll();
+            return response;
+        } catch (Exception e) {
+            throw new Exception("Exception occurred while fetching all referrals!");
+        }
+    }
+
 
 }
 

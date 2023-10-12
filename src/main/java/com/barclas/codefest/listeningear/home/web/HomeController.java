@@ -5,8 +5,10 @@ import com.barclas.codefest.listeningear.home.model.UserRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.websocket.server.PathParam;
+
 @RestController
-@RequestMapping("/")
+@RequestMapping("")
 public class HomeController {
 
     private final UserRepository userRepository;
@@ -26,9 +28,11 @@ public class HomeController {
         return userRepository.findAll();
     }
 
-    @PostMapping("/login")
-    public String login(@RequestBody Long userId, @RequestBody String password) {
-         User user = userRepository.findByUseridAndPassword(userId, password);
+    @GetMapping("/login/{userId}/{password}")
+    public String login(@PathVariable("userId") String username, @PathVariable("password") String password) {
+        System.out.println("username=======>");
+        System.out.println(username);
+         User user = userRepository.findByUsernameAndPassword(username, password);
          if(user != null){
              return "login success";
          }

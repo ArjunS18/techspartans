@@ -11,7 +11,7 @@ public class Client {
 
     @Id
     @Column(name = "clientId")
-    private String clientId;
+    private Long clientId;
 
     @Column(name = "firstName")
     private String firstName;
@@ -60,12 +60,12 @@ public class Client {
         this.lastUpdated = lastUpdated;
     }
 
-    public String getClientId() {
+    public Long getClientId() {
         return clientId;
     }
 
-    public void setClientId(String clientId) {
-        this.clientId = this.firstName + "_" + this.surname + "_" + this.dob;
+    public void setClientId(Long clientId) {
+        this.clientId = clientId;
     }
 
     public String getFirstName() {

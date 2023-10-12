@@ -11,7 +11,7 @@ import java.util.List;
 public interface CaseRepository extends JpaRepository<Case, Long> {
 
     @Query("select c from Case c where c.client.clientId = :id")
-    List<Case> findAllCasesByClientId(@Param("id") Long clientId);
+    List<Case> findAllCasesByClientId(@Param("id") Long id);
 
     Case findByCaseId(Long caseId);
 }

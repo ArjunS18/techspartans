@@ -10,4 +10,5 @@ import java.util.List;
 @Repository
 public interface ClientRepository extends JpaRepository<Client, Long> {
     int countByClientId(String clientId);
+    Client findByClientId(Long clientId);
 }

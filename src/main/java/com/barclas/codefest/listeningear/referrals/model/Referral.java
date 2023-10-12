@@ -11,7 +11,7 @@ public class Referral {
     @Id
     @Column(name = "referralId")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer referralId;
+    private Long referralId;
 
     @Column(name = "firstName")
     private String firstName;
@@ -55,11 +55,11 @@ public class Referral {
     @ManyToOne
     private Client client;
 
-    public Integer getReferralId() {
+    public Long getReferralId() {
         return referralId;
     }
 
-    public void setReferralId(Integer referralId) {
+    public void setReferralId(Long referralId) {
         this.referralId = referralId;
     }
 
