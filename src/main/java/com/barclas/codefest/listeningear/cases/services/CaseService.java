@@ -14,6 +14,11 @@ import javax.persistence.*;
 import javax.transaction.Transactional;
 import java.sql.Timestamp;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
 @Service
 public class CaseService {
     @Autowired
@@ -53,4 +58,33 @@ public class CaseService {
             throw new Exception("Exception occurred while fetching new referrals!");
         }
     }
+	
+	public Case getAll() throws Exception {
+        try {
+		
+			String url = "jdbc:mysql://techspartans.mysql.database.azure.com:3306/spartans";
+			String user = "admintech";
+			String password = "Tech@bar";
+			
+			Connection connection = DriverManager.getConnection(url, user, password);
+            Statement statement = connection.createStatement();
 
+            String query = "SELECT * FROM cases";
+            ResultSet resultSet = statement.executeQuery(query);
+			
+			while (resultSet.next()) {
+                String column1 = resultSet.getString("firstName");
+                String column2 = resultSet.getString("surname");
+                // Process the retrieved data
+                System.out.println("Column 1: " + column1 + ", Column 2: " + column2);
+            }
+
+            resultSet.close();
+            statement.close();
+            connection.close();
+		
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
