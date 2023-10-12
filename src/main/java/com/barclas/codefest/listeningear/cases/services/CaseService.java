@@ -58,7 +58,7 @@ public class CaseService {
             throw new Exception("Exception occurred while fetching new referrals!");
         }
     }
-	
+	 @RequestMapping(value = "/allcases", method = RequestMethod.GET)
 	public Case getAll() throws Exception {
         try {
 		
