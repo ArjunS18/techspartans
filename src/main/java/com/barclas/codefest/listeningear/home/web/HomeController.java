@@ -26,13 +26,13 @@ public class HomeController {
         return userRepository.findAll();
     }
 
-//    @GetMapping("/users")
-//    public User getTodos() {
-//        //return userRepository.findAll();
-//        User user = new User();
-//        user.setPassword("123456");
-//        user.setUserid(1000L);
-//        user.setUsername("admin");
-//        return user;
-    //}
+    @PostMapping("/login")
+    public String login(@RequestBody Long userId, @RequestBody String password) {
+         User user = userRepository.findByUseridAndPassword(userId, password);
+         if(user != null){
+             return "login success";
+         }
+         return "Unsuccessful login attempt!";
+    }
+
 }

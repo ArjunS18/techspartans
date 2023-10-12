@@ -32,7 +32,7 @@ public class Referral {
     private String phoneNo;
 
     @Column(name = "status")
-    private Boolean status;
+    private String status;
 
     @Column(name = "gpSurgeryName")
     private String gpSurgeryName;
@@ -46,8 +46,14 @@ public class Referral {
     @Column(name = "lastUpdated")
     private Timestamp lastUpdated;
 
+    @Column(name = "createdTime")
+    private Timestamp createdTime;
+
     @OneToOne(mappedBy = "referral")
     private Case caseHistory;
+
+    @ManyToOne
+    private Client client;
 
     public Integer getReferralId() {
         return referralId;
@@ -113,11 +119,11 @@ public class Referral {
         this.lastUpdated = lastUpdated;
     }
 
-    public Boolean getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(Boolean status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
@@ -143,5 +149,29 @@ public class Referral {
 
     public void setGpSurgeryPhoneNo(String gpSurgeryPhoneNo) {
         this.gpSurgeryPhoneNo = gpSurgeryPhoneNo;
+    }
+
+    public Timestamp getCreatedTime() {
+        return createdTime;
+    }
+
+    public void setCreatedTime(Timestamp createdTime) {
+        this.createdTime = createdTime;
+    }
+
+    public Case getCaseHistory() {
+        return caseHistory;
+    }
+
+    public void setCaseHistory(Case caseHistory) {
+        this.caseHistory = caseHistory;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
     }
 }

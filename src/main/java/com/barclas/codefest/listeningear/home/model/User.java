@@ -19,6 +19,9 @@ public class User {
     @Column(name = "userid")
     private Long userid;
 
+    @OneToOne(mappedBy = "doctor")
+    private Case assignedCase;
+
     public String getUsername() {
         return username;
     }
@@ -41,5 +44,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Case getAssignedCase() {
+        return assignedCase;
+    }
+
+    public void setAssignedCase(Case assignedCase) {
+        this.assignedCase = assignedCase;
     }
 }

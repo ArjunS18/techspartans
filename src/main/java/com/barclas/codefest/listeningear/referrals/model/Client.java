@@ -19,6 +19,9 @@ public class Client {
     @Column(name = "surname")
     private String surname;
 
+    @Column(name = "alternateName")
+    private String alternateName;
+
     @Column(name = "dob")
     private String dob;
 
@@ -28,7 +31,7 @@ public class Client {
     @Column(name = "address2")
     private String address2;
 
-    @Column(name = "phoneBo")
+    @Column(name = "phoneNo")
     private String phoneNo;
 
     @OneToMany(mappedBy = "client")
@@ -37,8 +40,17 @@ public class Client {
     @Column(name = "lastUpdated")
     private Timestamp lastUpdated;
 
-    public Client(String firstName, String surname, String dob, String address1, String address2, String phoneNo, Timestamp lastUpdated) {
-        this.clientId = firstName + "_" + surname + "_" + dob;
+    @Column(name = "createdOn")
+    private Timestamp createdOn;
+
+    @OneToMany(mappedBy = "client")
+    private List<Referral> referrals;
+
+    public Client(){}
+
+    public Client(String firstName, String surname, String dob, String address1
+            , String address2, String phoneNo, Timestamp lastUpdated) {
+        this.alternateName = firstName + "_" + surname + "_" + dob;
         this.firstName = firstName;
         this.surname = surname;
         this.dob = dob;
@@ -118,5 +130,29 @@ public class Client {
 
     public void setCases(List<Case> cases) {
         this.cases = cases;
+    }
+
+    public List<Referral> getReferrals() {
+        return referrals;
+    }
+
+    public void setReferrals(List<Referral> referrals) {
+        this.referrals = referrals;
+    }
+
+    public Timestamp getCreatedOn() {
+        return createdOn;
+    }
+
+    public void setCreatedOn(Timestamp createdOn) {
+        this.createdOn = createdOn;
+    }
+
+    public String getAlternateName() {
+        return alternateName;
+    }
+
+    public void setAlternateName(String alternateName) {
+        this.alternateName = alternateName;
     }
 }

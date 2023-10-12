@@ -1,5 +1,6 @@
 package com.barclas.codefest.listeningear.cases.dto;
 
+import com.barclas.codefest.listeningear.home.model.User;
 import com.barclas.codefest.listeningear.referrals.model.Client;
 import com.barclas.codefest.listeningear.referrals.model.Referral;
 import javax.persistence.*;
@@ -7,13 +8,13 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "Cases",schema = "spartans")
+@Table(name = "cases",schema = "spartans")
 public class Case {
 
     @Id
     @Column(name = "caseId")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer caseId;
+    private Long caseId;
 
     @Column(name = "firstName")
     private String firstName;
@@ -34,6 +35,10 @@ public class Case {
     @Column(name = "status")
     private String status;
 
+    @OneToOne(optional = false, cascade = CascadeType.ALL)
+    @JoinColumn(name = "doctorId", referencedColumnName = "userId")
+    private User doctor;
+
     public String getFirstName() {
         return firstName;
     }
@@ -50,11 +55,11 @@ public class Case {
         this.surname = surname;
     }
 
-    public Integer getCaseId() {
+    public Long getCaseId() {
         return caseId;
     }
 
-    public void setCaseId(Integer caseId) {
+    public void setCaseId(Long caseId) {
         this.caseId = caseId;
     }
 
@@ -88,5 +93,13 @@ public class Case {
 
     public void setReferral(Referral referral) {
         this.referral = referral;
+    }
+
+    public User getDoctor() {
+        return doctor;
+    }
+
+    public void setDoctor(User doctor) {
+        this.doctor = doctor;
     }
 }

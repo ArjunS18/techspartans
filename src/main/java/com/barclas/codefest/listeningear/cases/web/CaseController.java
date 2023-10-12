@@ -2,29 +2,52 @@ package com.barclas.codefest.listeningear.cases.web;
 
 import com.barclas.codefest.listeningear.cases.dto.Case;
 import com.barclas.codefest.listeningear.cases.model.CaseRepository;
+import com.barclas.codefest.listeningear.cases.service.CaseService;
+import com.barclas.codefest.listeningear.referrals.model.Referral;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("/")
+@RequestMapping("/case")
 public class CaseController {
 
-    private final CaseRepository caseRepository;
+    @Autowired
+    private final CaseService caseService;
 
-    public CaseController(CaseRepository caseRepository) {
-        this.caseRepository = caseRepository;
+    public CaseController(CaseService caseService) {
+        this.caseService = caseService;
     }
 
-//    @PostMapping("/")
-//    @ResponseStatus(HttpStatus.CREATED)
-//    public Case createTodo(@RequestBody Case todo) {
-//        return caseRepository.save(todo);
-//    }
+    @PostMapping("/create")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Case createCase(@RequestBody Referral referral) throws Exception {
+        return caseService.createCase(referral);
+    }
 
-//    @GetMapping("/users")
-//    public Iterable<User> getTodos() {
-//        return userRepository.findAll();
-//    }
+    @GetMapping("/assignDoctor/{caseId}/{doctorId}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public String assignDoctor( @PathVariable("caseId") Long caseId, @PathVariable("doctorId") Long doctorId)
+            throws Exception {
+        try {
+            caseService.assignDoctor(doctorId, caseId);
+
+            return "Doctor assigned successfully!";
+        }
+        catch(Exception e){
+            throw new Exception(e);
+        }
+    }
+
+    @GetMapping("/{clientId}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public List<Case> getCasesOfClient( @PathVariable("clientId") Long clientId)
+            throws Exception {
+
+            return caseService.getCasesOfClient(clientId);
+    }
 
 
 }
